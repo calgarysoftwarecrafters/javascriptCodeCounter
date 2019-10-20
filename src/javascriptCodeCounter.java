@@ -32,14 +32,14 @@ public class javascriptCodeCounter {
         return true;
     }
 
-    public int countCodeLines(String javascriptFile) {
+    public int countCodeLines(String javascriptFile){
+        int count = 0;
         String lines[] = javascriptFile.split("\\r?\\n");
-        int lineCounted = 0;
-        for (int i = 0; i < lines.length; i++) {
-            if (shouldBeCounted(lines[i])) {
-                lineCounted++;
-            }
+        for(int i = 0; i < lines.length; i++){
+          if(shouldBeCounted(lines[i])){
+            count++;
+          }
         }
-        return lineCounted;
+        return count;
     }
 }
