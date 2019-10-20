@@ -5,11 +5,17 @@ public class javascriptCodeCounter {
         counter.throwExceptionIfNotEqual(true, counter.shouldBeCounted("test"));
         counter.throwExceptionIfNotEqual(false, counter.shouldBeCounted("/* test */"));
         counter.throwExceptionIfNotEqual(true, counter.shouldBeCounted("test */"));
-
+        counter.throwExceptionIfNotEqual(1, counter.countCodeLines("test"));
         System.out.println("Success");
     }
 
     public void throwExceptionIfNotEqual(boolean expected, boolean actual) {
+        if (expected != actual) {
+            throw new RuntimeException("expected = " + expected + ", actual = " + actual);
+        }
+    }
+
+    public void throwExceptionIfNotEqual(int expected, int actual) {
         if (expected != actual) {
             throw new RuntimeException("expected = " + expected + ", actual = " + actual);
         }
@@ -26,11 +32,14 @@ public class javascriptCodeCounter {
         return true;
     }
 
-    public static int countCodeLines(String javascriptFile) {
+    public int countCodeLines(String javascriptFile) {
         String lines[] = javascriptFile.split("\\r?\\n");
+        int lineCounted = 0;
         for (int i = 0; i < lines.length; i++) {
-            System.out.println(lines[i]);
+            if (shouldBeCounted(lines[i])) {
+                lineCounted++;
+            }
         }
-        return -1;
+        return lineCounted;
     }
 }
