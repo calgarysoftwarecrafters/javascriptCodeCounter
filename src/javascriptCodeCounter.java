@@ -1,11 +1,10 @@
 public class javascriptCodeCounter {
     public static void main(String[] args) {
         javascriptCodeCounter counter = new javascriptCodeCounter();
-        boolean shouldBeCounted = counter.shouldBeCounted("//");
-        counter.throwExceptionIfNotEqual(false, shouldBeCounted);
-
-        shouldBeCounted = counter.shouldBeCounted("test");
-        counter.throwExceptionIfNotEqual(true, shouldBeCounted);
+        counter.throwExceptionIfNotEqual(false, counter.shouldBeCounted("//"));
+        counter.throwExceptionIfNotEqual(true, counter.shouldBeCounted("test"));
+        counter.throwExceptionIfNotEqual(false, counter.shouldBeCounted("/* test */"));
+        counter.throwExceptionIfNotEqual(true, counter.shouldBeCounted("test */"));
 
         System.out.println("Success");
     }
@@ -18,6 +17,10 @@ public class javascriptCodeCounter {
 
     public boolean shouldBeCounted(String line) {
         if (line.startsWith("//")) {
+            return false;
+        }
+
+        if (line.contains("/*") && line.contains("*/")) {
             return false;
         }
         return true;
