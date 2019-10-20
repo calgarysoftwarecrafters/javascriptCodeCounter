@@ -5,3 +5,5 @@
 
 I think we should divide a work somehow... (captain obvius)
 We need two function one to iterate over the lines the other to check if the line is need to be counted.
+- ok .... I can add in the function to iterate the line and you and add in method to iterate the lines?
+- ok, sure! so I add the method which cut the string into lines and than call your function.
