@@ -38,6 +38,6 @@ class SourceLineCounterTests {
 				"\"The value of z is \" + z + \".\";\n" + 
 				"";
 		int lineCount = counter.countCodeLines(script);
-		assertEquals(6, lineCount, "");
+		assertEquals(7, lineCount, "");
 	}
 }
